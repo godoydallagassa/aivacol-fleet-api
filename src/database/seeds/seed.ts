@@ -108,7 +108,7 @@ async function seed(): Promise<void> {
 seed()
   .then(async () => {
     await dataSource.destroy();
-    process.stdout.write('Seed completed.\n');
+    process.stdout.write('Seed finalizado.\n');
   })
   .catch(async (error: unknown) => {
     if (dataSource.isInitialized) {

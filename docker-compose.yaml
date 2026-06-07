@@ -8,9 +8,13 @@ services:
       - "3000:3000"
     env_file:
       - .env
+    command: >
+      sh -c "node dist/database/run-migrations.js &&
+             node dist/database/seeds/seed.js &&
+             node dist/main.js"
     depends_on:
-      sqlserver:
-        condition: service_started
+      sqlserver-init:
+        condition: service_completed_successfully
       redis:
         condition: service_started
 
@@ -25,6 +29,21 @@ services:
     volumes:
       - sqlserver_data:/var/opt/mssql
     restart: unless-stopped
+
+  sqlserver-init:
+    image: mcr.microsoft.com/mssql-tools
+    container_name: aivacol-sqlserver-init
+    depends_on:
+      sqlserver:
+        condition: service_started
+    environment:
+      DB_PASSWORD: ${DB_PASSWORD}
+      DB_USERNAME: ${DB_USERNAME}
+      DB_DATABASE: ${DB_DATABASE}
+    volumes:
+      - ./docker/sqlserver/init.sql:/init.sql:ro
+      - ./docker/sqlserver/init.sh:/init.sh:ro
+    entrypoint: ["/bin/bash", "/init.sh"]
 
   redis:
     image: redis:7-alpine

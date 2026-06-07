@@ -1,0 +1,23 @@
+[
+  {
+    "license_plate": "AIV4C01",
+    "chassis": "9BWZZZ377VT004251",
+    "renavam": "12345678901",
+    "year": 2024,
+    "model": "Sprinter"
+  },
+  {
+    "license_plate": "AIV4C02",
+    "chassis": "9BWZZZ377VT004252",
+    "renavam": "12345678902",
+    "year": 2023,
+    "model": "Daily"
+  },
+  {
+    "license_plate": "AIV4C03",
+    "chassis": "9BWZZZ377VT004253",
+    "renavam": "12345678903",
+    "year": 2022,
+    "model": "Ducato"
+  }
+]

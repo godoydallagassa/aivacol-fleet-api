@@ -1,7 +1,7 @@
 {
   "name": "aivacol",
   "version": "0.0.1",
-  "description": "",
+  "description": "API backend para gestão de frota com NestJS, TypeORM, SQL Server, Redis e JWT",
   "author": "Rafael Godoy",
   "private": false,
   "license": "MIT",

@@ -57,13 +57,17 @@ async function seed(): Promise<void> {
   const vehicles = dataSource.getRepository(Vehicle);
 
   let user = await users.findOne({ where: { username: seedUsername } });
+  const passwordHash = await bcrypt.hash(seedPassword, SALT_ROUNDS);
 
   if (!user) {
     user = users.create({
       username: seedUsername,
-      passwordHash: await bcrypt.hash(seedPassword, SALT_ROUNDS),
+      passwordHash,
       createdBy: 'seed',
     });
+    await users.save(user);
+  } else {
+    user.passwordHash = passwordHash;
     await users.save(user);
   }
 

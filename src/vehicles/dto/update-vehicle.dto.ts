@@ -8,6 +8,7 @@ import {
   MaxLength,
   Min,
 } from 'class-validator';
+import { Transform } from 'class-transformer';
 
 const nextYear = new Date().getFullYear() + 1;
 
@@ -35,5 +36,8 @@ export class UpdateVehicleDto {
 
   @IsOptional()
   @IsUUID()
+  @Transform(({ value }: { value: unknown }) =>
+    typeof value === 'string' ? value.toLowerCase() : value,
+  )
   modelId?: string;
 }

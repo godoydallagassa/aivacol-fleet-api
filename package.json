@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "description": "",
   "author": "Rafael Godoy",
-  "private": true,
+  "private": false,
   "license": "MIT",
   "scripts": {
     "build": "nest build",
